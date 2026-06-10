@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 212729096160799389}
   - component: {fileID: 8848472203749931778}
   - component: {fileID: 1269563679306296540}
+  - component: {fileID: -6476993724290170953}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -200,6 +201,20 @@ MonoBehaviour:
   m_DefaultActionMap: KeyboardMouse
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8553080719846842077}
+--- !u!114 &-6476993724290170953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360312997765375768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f6a709dfe0c764b99cc27f6ac1f59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreateWall
+  spawnRange: 2
+  wallLength: 10
 --- !u!1 &2230331856396230380
 GameObject:
   m_ObjectHideFlags: 0

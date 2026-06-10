@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float lowerLookLimit = 80f;
 
     private CharacterController characterController;
-    private PlayerInput playerInputComponent; // Renamed to avoid name conflicts
     private Vector2 moveInput;
     private Vector2 lookInput;
     private Vector3 velocity;
@@ -30,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        playerInputComponent = GetComponent<PlayerInput>(); // FIX: Corrected capitalization
 
         // Lock the cursor to the center of the screen and hide it
         Cursor.lockState = CursorLockMode.Locked;
@@ -45,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJump(InputValue value)
     {
+        Debug.Log("Jump");
         // Only jump if the character controller is firmly touching the floor
         if (characterController.isGrounded)
         {
