@@ -61,7 +61,7 @@ public class CreateWall : MonoBehaviour
 
         // Get the Main Camera's forward direction and flatten it on the Y axis
         Vector3 cameraForward = Camera.main.transform.forward;
-        cameraForward.y = 0;
+        //cameraForward.y = 0;
         cameraForward.Normalize();
 
         // Calculate base position and rotation using the flat camera direction
@@ -113,6 +113,7 @@ public class CreateWall : MonoBehaviour
             {
                 rend.material = previewMaterial;
             }
+            
         }
     }
 
