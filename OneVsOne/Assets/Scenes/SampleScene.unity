@@ -520,9 +520,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6476993724290170953, guid: d4aebb8ed9e97f14b9edf1f9e1e2c808, type: 3}
+      propertyPath: srX
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -6476993724290170953, guid: d4aebb8ed9e97f14b9edf1f9e1e2c808, type: 3}
+      propertyPath: srZ
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -6476993724290170953, guid: d4aebb8ed9e97f14b9edf1f9e1e2c808, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6476993724290170953, guid: d4aebb8ed9e97f14b9edf1f9e1e2c808, type: 3}
+      propertyPath: highlightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 52a1da1d79822044e821c7edf3ee4dbe, type: 2}
     - target: {fileID: 671653598226818874, guid: d4aebb8ed9e97f14b9edf1f9e1e2c808, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.61
