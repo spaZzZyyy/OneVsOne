@@ -98,7 +98,7 @@ public class CreateWall : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
 
             // Check if what we hit is a wall (and make sure it isn't an active placement preview)
-            if (hitObject.GetComponent<BoxCollider>() != null && hitObject != previewInstance)
+            if (hitObject.GetComponent<BoxCollider>() != null && hitObject != previewInstance && hitObject.tag == "WallMat")
             {
                 // If we switched to a NEW wall, clean up old references and build a new highlight
                 if (hitObject != currentTargetedWall)
@@ -173,7 +173,7 @@ public class CreateWall : MonoBehaviour
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
             if (Physics.Raycast(ray, out RaycastHit hit, spawnRange + 5f))
             {
-                if (hit.collider.gameObject.GetComponent<BoxCollider>() != null && hit.collider.gameObject != previewInstance)
+                if (hit.collider.gameObject.GetComponent<BoxCollider>() != null && hit.collider.gameObject != previewInstance && hit.collider.gameObject.tag == "WallMat")
                 {
                     GameObject hitWall = hit.collider.gameObject;
 
