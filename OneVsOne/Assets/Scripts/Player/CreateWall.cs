@@ -12,6 +12,7 @@ public class CreateWall : MonoBehaviour
     [SerializeField] float srX = 0f;
     [SerializeField] float srY = 0f;
     [SerializeField] float srZ = 0f;
+    [SerializeField] float wallHeight = 0f;
 
     [Header("Preview & Highlight Setup")]
     [SerializeField] Material previewMaterial;     // Transparent ghost material for building
@@ -89,6 +90,8 @@ public class CreateWall : MonoBehaviour
         }
     }
 
+    
+
     void CheckForDeletionTarget()
     {
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -98,7 +101,7 @@ public class CreateWall : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
 
             // Check if what we hit is a wall (and make sure it isn't an active placement preview)
-            if (hitObject.GetComponent<BoxCollider>() != null && hitObject != previewInstance && hitObject.tag == "WallMat")
+            if (hitObject.GetComponent<BoxCollider>() != null && hitObject != previewInstance && hitObject.CompareTag("WallMat"))
             {
                 // If we switched to a NEW wall, clean up old references and build a new highlight
                 if (hitObject != currentTargetedWall)
@@ -181,22 +184,17 @@ public class CreateWall : MonoBehaviour
                     float lookAlongForward = Vector3.Dot(cameraForward, hitWall.transform.forward);
                     float lookAlongRight = Vector3.Dot(cameraForward, hitWall.transform.right);
 
+                    // We check if your view direction matches the local Right vector more than Forward
                     Vector3 snapDirection = Vector3.zero;
                     float thicknessOffset = 0f;
 
-                    // --- RE-TUNED SELECTION THRESHOLD ---
-                    // We check if your view direction matches the local Right vector more than Forward
                     if (Mathf.Abs(lookAlongRight) >= Mathf.Abs(lookAlongForward))
                     {
-                        // Player is pushing HORIZONTALLY along the wall's X-Axis (Left / Right edges)
                         snapDirection = hitWall.transform.right * Mathf.Sign(lookAlongRight);
-                        
-                        // If your wall mesh's long side is modeled on Z, use width here. If modeled on X, use length.
                         thicknessOffset = wallWidth; 
                     }
                     else
                     {
-                        // Player is pushing VERTICALLY/DEPTH-WISE along the wall's Z-Axis (Front / Back edges)
                         snapDirection = hitWall.transform.forward * Mathf.Sign(lookAlongForward);
                         thicknessOffset = wallLength;
                     }
@@ -211,9 +209,15 @@ public class CreateWall : MonoBehaviour
                     {
                         finalSpawnPosition = this.transform.position + (cameraForward * minSafetyDistance);
                     }
+
+
                     return;
                 }
             }
+
+            // --- FIX 2: APPLY WALL HEIGHT TO FREE-SPAWNED / FALLBACK WALLS ---
+            // Applying this before the CheckBox loop ensures your physical collision math runs at the correct height offset
+            finalSpawnPosition.y += wallHeight;
 
             // Fallback safety stacker
             int safetyCounter = 0;
